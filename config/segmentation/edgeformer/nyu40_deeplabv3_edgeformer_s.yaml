@@ -5,22 +5,22 @@ common:
   log_freq: 200
   auto_resume: true
   mixed_precision: true
-  results_loc: "/home/disk/result/segmentation_pascal/edgeformer-s"
+  results_loc: "/content/result/segmentation"
 dataset:
-  root_train: "/home/disk/data/pascal_aug/"
-  root_val: "/home/disk/data/pascal_aug/"
-  name: "pascal"
+  root_train: "/content/edgeformer-nyuv2"
+  root_val: "/content/edgeformer-nyuv2"
+  name: "nyuv2"
   category: "segmentation"
   channels: ['rgb', 'hha']
-  train_batch_size0: 8
-  val_batch_size0: 4
-  eval_batch_size0: 4
-  workers: 8
+  train_batch_size0: 2
+  val_batch_size0: 2
+  eval_batch_size0: 2
+  workers: 1
   persistent_workers: false
   pin_memory: false
-  pascal:
-    use_coco_data: True
-    coco_root_dir: "/home/disk/data/coco_preprocess/"
+  nyuv2:
+    use_coco_data: false
+    coco_root_dir: ""
 image_augmentation:
   random_resize:
     enable: true
@@ -73,7 +73,7 @@ model:
       aspp_out_channels: 256
       aspp_rates: [6, 12, 18]
   classification:
-    name: "edgeformer"
+    name: "edgeformer_nyuv2"
     classifier_dropout: 0.2
     edge:
       scale: "scale_s"
